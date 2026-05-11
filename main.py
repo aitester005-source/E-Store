@@ -47,12 +47,14 @@ new_cat = st.sidebar.selectbox("Category", ["Pens", "Markers", "Notebooks", "Oth
 
 # Image Uploader for New Product
 uploaded_file = st.sidebar.file_uploader("Upload Product Image", type=["png", "jpg", "jpeg"])
-new_img_name = "gel-pen.png" # Default
+new_img_data = "gel-pen.png" # Default filename
+
 if uploaded_file:
-    new_img_name = uploaded_file.name
-    with open(new_img_name, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-    st.sidebar.info(f"Uploaded: {new_img_name}")
+    import base64
+    bytes_data = uploaded_file.getvalue()
+    base64_img = base64.b64encode(bytes_data).decode()
+    new_img_data = f"data:image/{uploaded_file.type.split('/')[-1]};base64,{base64_img}"
+    st.sidebar.success("Image converted for sync!")
 
 new_desc = st.sidebar.text_area("Description")
 
@@ -65,7 +67,7 @@ if st.sidebar.button("Add Product"):
             "category": new_cat,
             "quantity": new_qty,
             "desc": new_desc,
-            "img": new_img_name
+            "img": new_img_data
         }
         products.append(new_product)
         save_data(products)
@@ -86,10 +88,13 @@ if not df.empty:
     cols = st.columns(4)
     for idx, product in enumerate(products):
         with cols[idx % 4]:
-            if os.path.exists(product['img']):
-                st.image(product['img'], caption=product['name'], use_column_width=True)
+            img_src = product['img']
+            if img_src.startswith("data:"):
+                st.image(img_src, caption=product['name'], use_column_width=True)
+            elif os.path.exists(img_src):
+                st.image(img_src, caption=product['name'], use_column_width=True)
             else:
-                st.info(f"No image: {product['img']}")
+                st.info(f"No image: {img_src}")
 
     # Analytics
     st.markdown("---")
@@ -119,10 +124,11 @@ if not df.empty:
             edit_uploaded_file = st.file_uploader("Change Product Image", type=["png", "jpg", "jpeg"], key="edit_upload")
             edit_img = product_to_edit['img']
             if edit_uploaded_file:
-                edit_img = edit_uploaded_file.name
-                with open(edit_img, "wb") as f:
-                    f.write(edit_uploaded_file.getbuffer())
-                st.info(f"Updated Image: {edit_img}")
+                import base64
+                edit_bytes = edit_uploaded_file.getvalue()
+                edit_base64 = base64.b64encode(edit_bytes).decode()
+                edit_img = f"data:image/{edit_uploaded_file.type.split('/')[-1]};base64,{edit_base64}"
+                st.info("New image ready for update.")
 
             edit_desc = st.text_area("Edit Description", value=product_to_edit['desc'], key="edit_desc")
             
