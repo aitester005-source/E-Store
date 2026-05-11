@@ -34,7 +34,8 @@ products = load_data()
 
 # Sidebar - Navigation & Store Link
 st.sidebar.title("Navigation")
-st.sidebar.markdown(f"[🔗 View Public Store](https://aitester005-source.github.io/E-Store/)")
+# Use index.html explicitly for the link
+st.sidebar.markdown(f"[🔗 View Public Store](https://aitester005-source.github.io/E-Store/index.html)")
 st.sidebar.markdown("---")
 
 # Sidebar - Add New Product
@@ -43,7 +44,16 @@ new_name = st.sidebar.text_input("Product Name")
 new_price = st.sidebar.number_input("Price (AED)", min_value=0.0, step=0.5)
 new_qty = st.sidebar.number_input("Quantity in Stock", min_value=0, step=1)
 new_cat = st.sidebar.selectbox("Category", ["Pens", "Markers", "Notebooks", "Others"])
-new_img = st.sidebar.text_input("Image Filename (e.g., gel-pen.png)", value="gel-pen.png")
+
+# Image Uploader for New Product
+uploaded_file = st.sidebar.file_uploader("Upload Product Image", type=["png", "jpg", "jpeg"])
+new_img_name = "gel-pen.png" # Default
+if uploaded_file:
+    new_img_name = uploaded_file.name
+    with open(new_img_name, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    st.sidebar.info(f"Uploaded: {new_img_name}")
+
 new_desc = st.sidebar.text_area("Description")
 
 if st.sidebar.button("Add Product"):
@@ -55,7 +65,7 @@ if st.sidebar.button("Add Product"):
             "category": new_cat,
             "quantity": new_qty,
             "desc": new_desc,
-            "img": new_img
+            "img": new_img_name
         }
         products.append(new_product)
         save_data(products)
@@ -79,7 +89,7 @@ if not df.empty:
             if os.path.exists(product['img']):
                 st.image(product['img'], caption=product['name'], use_column_width=True)
             else:
-                st.info(f"Image not found: {product['img']}")
+                st.info(f"No image: {product['img']}")
 
     # Analytics
     st.markdown("---")
@@ -104,7 +114,16 @@ if not df.empty:
             
             edit_price = st.number_input("Edit Price", value=float(product_to_edit['price']), step=0.5, key="edit_price")
             edit_qty = st.number_input("Edit Quantity", value=int(product_to_edit['quantity']), step=1, key="edit_qty")
-            edit_img = st.text_input("Edit Image Filename", value=product_to_edit['img'], key="edit_img")
+            
+            # Image Uploader for Editing
+            edit_uploaded_file = st.file_uploader("Change Product Image", type=["png", "jpg", "jpeg"], key="edit_upload")
+            edit_img = product_to_edit['img']
+            if edit_uploaded_file:
+                edit_img = edit_uploaded_file.name
+                with open(edit_img, "wb") as f:
+                    f.write(edit_uploaded_file.getbuffer())
+                st.info(f"Updated Image: {edit_img}")
+
             edit_desc = st.text_area("Edit Description", value=product_to_edit['desc'], key="edit_desc")
             
             if st.button("Update Item"):
