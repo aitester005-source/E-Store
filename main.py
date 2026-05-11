@@ -71,7 +71,18 @@ if not df.empty:
     # Display table with image column
     st.dataframe(df[['name', 'category', 'price', 'quantity', 'img', 'desc']], use_container_width=True)
     
+    # Visual Gallery
+    st.markdown("### 🖼️ Product Gallery")
+    cols = st.columns(4)
+    for idx, product in enumerate(products):
+        with cols[idx % 4]:
+            if os.path.exists(product['img']):
+                st.image(product['img'], caption=product['name'], use_column_width=True)
+            else:
+                st.info(f"Image not found: {product['img']}")
+
     # Analytics
+    st.markdown("---")
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Products", len(products))
     col2.metric("Total Stock", df['quantity'].sum())
@@ -87,13 +98,19 @@ if not df.empty:
         product_to_edit = next((p for p in products if p['name'] == edit_item_name), None)
         
         if product_to_edit:
+            # Show current image
+            if os.path.exists(product_to_edit['img']):
+                st.image(product_to_edit['img'], width=100)
+            
             edit_price = st.number_input("Edit Price", value=float(product_to_edit['price']), step=0.5, key="edit_price")
             edit_qty = st.number_input("Edit Quantity", value=int(product_to_edit['quantity']), step=1, key="edit_qty")
+            edit_img = st.text_input("Edit Image Filename", value=product_to_edit['img'], key="edit_img")
             edit_desc = st.text_area("Edit Description", value=product_to_edit['desc'], key="edit_desc")
             
             if st.button("Update Item"):
                 product_to_edit['price'] = edit_price
                 product_to_edit['quantity'] = edit_qty
+                product_to_edit['img'] = edit_img
                 product_to_edit['desc'] = edit_desc
                 save_data(products)
                 st.success(f"Updated {edit_item_name}!")
