@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PenDen | Premium Stationery Store</title>
+    <meta name="description" content="Discover premium pens, markers, and office essentials at PenDen. Vibrant, active, and productive stationery for the modern professional.">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Pen<span>Den</span></div>
+        <nav>
+            <ul>
+                <li><a href="#pens">The Pen Den</a></li>
+                <li><a href="#markers">The Bold Board</a></li>
+                <li><a href="#supplies">Correction Corner</a></li>
+                <li><a href="#dashboard">Active Dashboard</a></li>
+                <li><a href="admin.html" style="color: var(--secondary-yellow);">Admin</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <a href="#" style="color: white; margin-right: 1.5rem;"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#" style="color: white; position: relative;">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: var(--secondary-yellow); color: var(--matte-black); font-size: 0.7rem; font-weight: 800; padding: 2px 6px; border-radius: 50%; display: none;">0</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ignite Your <span>Productivity</span></h1>
+            <p>From premium Uni-ball gel pens to vibrant board markers, fuel your focus with high-energy stationery designed for action.</p>
+            <div class="hero-btns">
+                <a href="#pens" class="btn btn-primary">Shop Now</a>
+                <a href="#dashboard" class="btn btn-secondary">Live Tracker</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Image will be generated -->
+            <img src="hero-stationery.png" alt="Vibrant Stationery Arrangement" id="hero-img">
+        </div>
+    </section>
+
+    <section class="section" id="pens">
+        <div class="section-title">
+            <h2>The Pen Den</h2>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-tag">Best Seller</div>
+                <div class="product-image"><img src="uniball-pen.png" alt="Uni-ball Elite"></div>
+                <div class="product-info">
+                    <h3>Uni-ball Elite</h3>
+                    <p>Smooth ink, effortless precision.</p>
+                    <div class="product-price">AED 4.99</div>
+                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; width: 100%; margin-top: 1rem;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-tag">New</div>
+                <div class="product-image"><img src="gel-pen.png" alt="Vivid Gel Pen"></div>
+                <div class="product-info">
+                    <h3>Vivid Gel Pen</h3>
+                    <p>Bold colors for bold ideas.</p>
+                    <div class="product-price">AED2.50</div>
+                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; width: 100%; margin-top: 1rem;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><img src="everyday-pen.png" alt="Everyday Precision"></div>
+                <div class="product-info">
+                    <h3>Everyday Precision</h3>
+                    <p>Reliable performance for daily tasks.</p>
+                    <div class="product-price">$1.20</div>
+                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; width: 100%; margin-top: 1rem;">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="markers" style="background: #eee;">
+        <div class="section-title">
+            <h2>The Bold Board</h2>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <i class="fa-solid fa-highlighter"></i>
+                <h3>Highlighters</h3>
+                <p>Neon precision for your most important notes.</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Browse</a>
+            </div>
+            <div class="category-card">
+                <i class="fa-solid fa-marker"></i>
+                <h3>Board Markers</h3>
+                <p>Erasable brilliance for the boardroom.</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Browse</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="dashboard">
+        <div class="section-title">
+            <h2>Active Dashboard</h2>
+        </div>
+        <div class="quick-order">
+            <div class="dashboard-text">
+                <h3>Real-Time Productivity Hub</h3>
+                <p>Track your stock and order in a flash.</p>
+            </div>
+            <div class="stock-tracker">
+                <div class="stock-item">
+                    <span class="stock-count" id="pen-stock">1,240</span>
+                    <span class="stock-label">Pens in Stock</span>
+                </div>
+                <div class="stock-item">
+                    <span class="stock-count" id="marker-stock">850</span>
+                    <span class="stock-label">Markers Ready</span>
+                </div>
+            </div>
+            <button class="btn btn-primary">Quick Restock</button>
+        </div>
+    </section>
+
+    <footer style="background: var(--matte-black); color: white; padding: 3rem 5%; text-align: center;">
+        <p>&copy; 2026 PenDen Stationery. Stay Sharp.</p>
+    </footer>
+
+    <div id="cart-modal" class="modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);">
+        <div class="modal-content" style="background: white; margin: 5% auto; padding: 2rem; border-radius: 20px; width: 90%; max-width: 500px; position: relative;">
+            <span class="close" id="close-cart" style="position: absolute; right: 20px; top: 10px; font-size: 2rem; cursor: pointer;">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; color: var(--matte-black);">Your Cart</h2>
+            <div id="cart-items-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 1.5rem;">
+                <!-- Items will be injected here -->
+            </div>
+            <div style="border-top: 2px solid #eee; padding-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.2rem; margin-bottom: 1.5rem;">
+                    <span>Total:</span>
+                    <span id="cart-total">AED 0.00</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem;">Customer Information</h4>
+                    <input type="text" id="cust-name" placeholder="Full Name" required style="width: 100%; padding: 0.8rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <input type="email" id="cust-email" placeholder="Email Address" required style="width: 100%; padding: 0.8rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem;">Payment Method</h4>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="radio" name="payment" value="cod" checked>
+                        Cash on Delivery (AED)
+                    </label>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn" style="width: 100%;">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" style="display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(10px);">
+        <div class="modal-content" style="background: white; margin: 10% auto; padding: 3rem; border-radius: 30px; width: 90%; max-width: 450px; text-align: center;">
+            <div class="success-checkmark">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 style="color: var(--matte-black); margin-bottom: 1rem;">Order Received!</h2>
+            <p id="success-msg" style="color: #666; margin-bottom: 2rem;">Your order has been logged and drafted for ameer.hamzasigma1980@gmail.com.</p>
+            <button class="btn btn-primary" onclick="location.reload()" style="width: 100%;">Great, Thanks!</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-msg">Item added to cart!</span>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

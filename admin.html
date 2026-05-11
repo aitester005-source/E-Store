@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PenDen | Admin Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="background: #f0f2f5;">
+
+    <header>
+        <div class="logo">Pen<span>Den</span> Admin</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">View Store</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="section">
+        <div class="section-title">
+            <h2>Inventory Management</h2>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 20px; box-shadow: var(--shadow);">
+            <h3>Add New Item</h3>
+            <form id="add-item-form" style="margin-top: 1.5rem; display: grid; gap: 1rem;">
+                <input type="hidden" id="item-id">
+                <input type="text" id="item-name" placeholder="Item Name" required style="padding: 1rem; border: 1px solid #ddd; border-radius: 10px;">
+                <input type="number" id="item-price" placeholder="Price (AED)" step="0.01" required style="padding: 1rem; border: 1px solid #ddd; border-radius: 10px;">
+                                <input type="text" id="item-category" placeholder="Category (e.g. Pens, Markers)" required style="padding: 1rem; border: 1px solid #ddd; border-radius: 10px;">
+                <input type="number" id="item-quantity" placeholder="Quantity in Stock" required style="padding: 1rem; border: 1px solid #ddd; border-radius: 10px;">
+
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div id="img-preview" style="width: 80px; height: 80px; background: #eee; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 0.7rem; color: #999;">No Image</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display: block; font-size: 0.8rem; color: #666; margin-bottom: 0.3rem;">Product Image</label>
+                        <input type="file" id="item-image" accept="image/*" style="font-size: 0.8rem;">
+                    </div>
+                </div>
+                <textarea id="item-desc" placeholder="Detailed Description" rows="4" style="padding: 1rem; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;"></textarea>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" id="submit-btn" class="btn btn-primary" style="flex: 2;">Add Product</button>
+                    <button type="button" id="cancel-edit-btn" class="btn" style="flex: 1; display: none; background: #666; color: white;">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div style="max-width: 800px; margin: 3rem auto;">
+            <h3>Current Inventory</h3>
+            <div id="inventory-list" style="margin-top: 1.5rem; display: grid; gap: 1rem;">
+                <!-- Inventory items will be listed here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
