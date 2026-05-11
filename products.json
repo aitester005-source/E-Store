@@ -1,0 +1,5 @@
+[
+    { "id": 1, "name": "Uni-ball Elite", "price": 5.50, "category": "Pens", "quantity": 25, "desc": "Smooth ink, effortless precision.", "img": "uniball-pen.png" },
+    { "id": 2, "name": "Vivid Gel Pen", "price": 5.00, "category": "Pens", "quantity": 40, "desc": "Bold colors for bold ideas.", "img": "gel-pen.png" },
+    { "id": 3, "name": "Everyday Precision", "price": 3.00, "category": "Pens", "quantity": 100, "desc": "Reliable performance for daily tasks.", "img": "everyday-pen.png" }
+]

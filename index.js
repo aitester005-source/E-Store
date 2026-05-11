@@ -24,7 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 2, name: 'Vivid Gel Pen', price: 5.00, category: 'Pens', quantity: 40, desc: 'Bold colors for bold ideas.', img: 'gel-pen.png' },
         { id: 3, name: 'Everyday Precision', price: 3.00, category: 'Pens', quantity: 100, desc: 'Reliable performance for daily tasks.', img: 'everyday-pen.png' }
     ];
-    let products = JSON.parse(localStorage.getItem('penden_products')) || defaultProducts;
+
+    let products = [];
+
+    async function initProducts() {
+        try {
+            // Try to fetch from products.json (synced from Streamlit)
+            const response = await fetch('products.json');
+            if (response.ok) {
+                products = await response.json();
+                console.log("Loaded products from products.json");
+            } else {
+                throw new Error("JSON not found");
+            }
+        } catch (err) {
+            // Fallback to localStorage or defaults
+            products = JSON.parse(localStorage.getItem('penden_products')) || defaultProducts;
+            console.log("Loaded products from localStorage/Defaults");
+        }
+        renderStore();
+    }
 
     function renderStore() {
         if (!productsGrid) return;
@@ -146,6 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('success-msg').innerText = `Order drafted for ${name}! Please make sure to click "SEND" in your email app to notify the team.`;
     });
 
-    renderStore();
+    initProducts();
     console.log("PenDen E-Commerce Engine Initialized.");
 });
